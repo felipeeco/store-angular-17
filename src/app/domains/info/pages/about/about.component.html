@@ -1,10 +1,23 @@
-<p>
-    <input type="number" [value]="duration()" (change)="changeDuration($event)">
-</p>
+<div class="px-10">
+    <h1 class="text-lg font-bold">About</h1>
+    <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, 
+    autem ratione. Ad doloribus reiciendis ipsum itaque necessitatibus a, 
+    orro quas molestiae esse. Debitis accusantium consequuntur doloribus 
+    veritatis cum magnam molestiae?</p>
+    <p>
+        <input type="number" [value]="duration()" (change)="changeDuration($event)">
+    </p>
+    
+    <p>
+        <input type="text" [value]="message()" (change)="changeMessage($event)">
+    </p>
+    
+    <app-counter [duration]="duration()" [message]="message()" />
+    
+    <h2 class="text-lg font-bold">Audio</h2>
+    <div>
+        <app-wave-audio audioUrl='assets/audio.mp3' />
+    </div>
+</div>
 
-<p>
-    <input type="text" [value]="message()" (change)="changeMessage($event)">
-</p>
-
-<app-counter [duration]="duration()" [message]="message()" />
 
