@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild, Inject, PLATFORM_ID, signal } from '@angular/core';
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import WaveSurfer from 'wavesurfer.js';
 
 @Component({
@@ -12,7 +12,7 @@ import WaveSurfer from 'wavesurfer.js';
 
 export class WaveAudioComponent {
 
-  constructor(@Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   @Input({required: true}) audioUrl!: string;
   @ViewChild('wave') container!: ElementRef;
@@ -20,7 +20,7 @@ export class WaveAudioComponent {
   isPlaying = signal(false);
   
   ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId) && this.document) {
+    if (isPlatformBrowser(this.platformId)) {
       this.ws = WaveSurfer.create({
         url: this.audioUrl,
         container: this.container.nativeElement

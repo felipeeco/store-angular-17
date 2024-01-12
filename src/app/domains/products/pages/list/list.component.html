@@ -1,8 +1,5 @@
 <div class="grid grid-cols-3 gap-8">
-    <app-product [title]="'Prioduct 1'" [price]="12" (addToCart)="fromChild($event)" />
-    <app-product [title]="'Prioduct 2'" [price]="22" />
-    <app-product [title]="'Prioduct 3'" [price]="34" />
-    <app-product [title]="'Prioduct 1'" [price]="12" (addToCart)="fromChild($event)" />
-    <app-product [title]="'Prioduct 2'" [price]="22" />
-    <app-product [title]="'Prioduct 3'" [price]="34" />
+    @for(product of products(); track product.id) {
+        <app-product [product]="product" (addToCart)="fromChild($event)" />
+    }
 </div>
