@@ -11,10 +11,9 @@ import { Product } from '../../../shared/models/product.model';
 export class ProductComponent {
   
   @Input({required: true}) product! : Product;
-  @Output() addToCart = new EventEmitter<string>();
+  @Output() addToCart = new EventEmitter<Product>();
 
   addCartHandler() {
-    console.log('click form child');
-    this.addToCart.emit('Hola este es un mensaje desde el hijo');
+    this.addToCart.emit(this.product);
   }
 }

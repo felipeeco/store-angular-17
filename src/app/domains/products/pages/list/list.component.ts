@@ -14,42 +14,42 @@ export class ListComponent {
 
   products = signal<Product[]>([
     {
-      id: Date.now(),
+      id: 1,
       title: 'Product one',
       price: 100,
       imageUrl: 'https://picsum.photos/640/640?r=23',
       creationAt: new Date().toISOString()
     },
     {
-      id: Date.now(),
+      id: 2,
       title: 'Product two',
       price: 80,
       imageUrl: 'https://picsum.photos/640/640?r=12',
       creationAt: new Date().toISOString()
     },
     {
-      id: Date.now(),
+      id: 3,
       title: 'Product one',
       price: 100,
       imageUrl: 'https://picsum.photos/640/640?r=23',
       creationAt: new Date().toISOString()
     },
     {
-      id: Date.now(),
+      id: 4,
       title: 'Product two',
       price: 80,
       imageUrl: 'https://picsum.photos/640/640?r=12',
       creationAt: new Date().toISOString()
     },
     {
-      id: Date.now(),
+      id: 5,
       title: 'Product one',
       price: 100,
       imageUrl: 'https://picsum.photos/640/640?r=23',
       creationAt: new Date().toISOString()
     },
     {
-      id: Date.now(),
+      id: 6,
       title: 'Product two',
       price: 80,
       imageUrl: 'https://picsum.photos/640/640?r=12',
@@ -57,7 +57,11 @@ export class ListComponent {
     }
   ]);
 
-  fromChild(event : string) {
-    console.log('estamos en el padre', event)
+  cartProdcuts = signal<Product[]>([]);
+
+  addToCart(event : Product) {
+    if(event) {
+      this.cartProdcuts.update(lastValue => [...lastValue, event]);
+    }
   }
 }

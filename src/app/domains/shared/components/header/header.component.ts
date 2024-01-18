@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, Input } from '@angular/core';
+import { Product } from '../../../shared/models/product.model';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,16 @@ import { Component, signal } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+
+  @Input({required: true}) cartProdcuts : Product[] = [];
+
+  get total(): number {
+    return this.cartProdcuts.reduce((accumulator, product) => {
+      return accumulator + product.price;
+    }, 0)
+  }
+
+  
 
   isHideSideMenu = signal(true);
   toogleSideMenu() {
