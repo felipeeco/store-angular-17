@@ -13,12 +13,8 @@ export class HeaderComponent {
   @Input({required: true}) cartProdcuts : Product[] = [];
 
   get total(): number {
-    return this.cartProdcuts.reduce((accumulator, product) => {
-      return accumulator + product.price;
-    }, 0)
+    return this.cartProdcuts.reduce((accumulator, product) => accumulator + product.price, 0);
   }
-
-  
 
   isHideSideMenu = signal(true);
   toogleSideMenu() {
