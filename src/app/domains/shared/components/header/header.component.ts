@@ -1,5 +1,6 @@
-import { Component, signal, Input } from '@angular/core';
+import { Component, signal, Input, inject } from '@angular/core';
 import { Product } from '../../../shared/models/product.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -10,11 +11,7 @@ import { Product } from '../../../shared/models/product.model';
 })
 export class HeaderComponent {
 
-  @Input({required: true}) cartProdcuts : Product[] = [];
-
-  get total(): number {
-    return this.cartProdcuts.reduce((accumulator, product) => accumulator + product.price, 0);
-  }
+  cartService = inject(CartService);
 
   isHideSideMenu = signal(true);
   toogleSideMenu() {
