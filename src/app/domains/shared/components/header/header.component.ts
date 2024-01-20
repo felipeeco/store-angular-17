@@ -1,5 +1,4 @@
 import { Component, signal, Input, inject } from '@angular/core';
-import { Product } from '../../../shared/models/product.model';
 import { CartService } from '../../services/cart.service';
 
 @Component({
