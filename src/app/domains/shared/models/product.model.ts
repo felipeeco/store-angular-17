@@ -1,4 +1,3 @@
-import { SafeResourceUrl } from '@angular/platform-browser';
 export interface Product {
     id: number,
     title: string,
