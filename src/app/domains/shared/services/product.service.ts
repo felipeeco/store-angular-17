@@ -7,10 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  
+
   private http = inject(HttpClient);
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('https://api.escuelajs.co/api/v1/products');
+  }
+
+  getOne(id: string): Observable<Product> {
+    return this.http.get<Product>(`https://api.escuelajs.co/api/v1/products/${id}`);
   }
 }

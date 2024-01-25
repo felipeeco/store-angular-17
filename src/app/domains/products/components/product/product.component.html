@@ -1,8 +1,8 @@
 <div class="group rounded-lg border">
-    <a href="#" class="w-full overflow-hidden rounded-t-lg bg-gray-200">
-        <img 
-            [src]="imageUrl | safeUrl" 
-            [alt]="product.title" 
+    <a routerLink="/product/{{product.id}}" class="w-full overflow-hidden rounded-t-lg bg-gray-200">
+        <img
+            [src]="imageUrl | safeUrl"
+            [alt]="product.title"
             class="h-full w-full object-cover object-center group-hover:opacity-75"
         >
     </a>
