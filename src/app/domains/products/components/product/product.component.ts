@@ -4,13 +4,13 @@ import { CurrencyPipe, DatePipe, UpperCasePipe } from '@angular/common';
 import { ReversePipe } from '@shared/pipes/reverse.pipe';
 import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';
 import { SafeUrlPipe } from '@shared/pipes/sanitizer-url-image.pipe';
-import { RouterLink } from '@angular/router';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-product',
   standalone: true,
   imports: [CurrencyPipe, DatePipe,
-    UpperCasePipe, ReversePipe, TimeAgoPipe, SafeUrlPipe, RouterLink],
+    UpperCasePipe, ReversePipe, TimeAgoPipe, SafeUrlPipe, RouterLinkWithHref],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
