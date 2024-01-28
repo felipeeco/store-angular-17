@@ -4,21 +4,21 @@
       <img
         alt="ecommerce"
         class="w-full object-cover object-center"
-        [src]="cover()"
+        [src]="cover() | safeUrl"
       />
     </div>
     <div class="flex items-center justify-center mt-1">
       <div class="grid grid-cols-3 gap-1">
         @for (img of product()?.images; track img) {
-<img
-          alt="ecommerce"
-          class="object-cover object-center rounded border-2 border-gray-200"
-
-          [src]="img"
-          (click)="changeCover(img)"
-          [class.border-red-400]="img === cover()"
-        />
-}
+          <img
+            alt="ecommerce"
+            class="object-cover object-center rounded border-2 border-gray-200"
+            [src]="img | safeUrl"
+            (click)="changeCover(img)"
+            [class.border-red-400]="img === cover()"
+            *ngIf="img.slice(0,5) === 'https'"
+          />
+        }
       </div>
     </div>
   </div>

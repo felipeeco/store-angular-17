@@ -10,8 +10,12 @@ export class ProductService {
 
   private http = inject(HttpClient);
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('https://api.escuelajs.co/api/v1/products');
+  getProducts(categoryID? : string): Observable<Product[]> {
+    const url = new URL('https://api.escuelajs.co/api/v1/products');
+    if(categoryID) {
+      url.searchParams.set('categoryId', categoryID)
+    }
+    return this.http.get<Product[]>(url.toString());
   }
 
   getOne(id: string): Observable<Product> {

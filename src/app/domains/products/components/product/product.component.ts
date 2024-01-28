@@ -14,7 +14,7 @@ import { RouterLinkWithHref } from '@angular/router';
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit {
 
   @Input({required: true}) product! : Product;
   @Output() addToCart = new EventEmitter<Product>();
