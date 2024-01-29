@@ -8,11 +8,12 @@ import { ProductService } from '@shared/services/product.service';
 import { CategoriesService } from '@shared/services/categories.service';
 import { Category } from '@shared/models/category.model';
 import { CommonModule } from '@angular/common';
+import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [ProductComponent, CommonModule, RouterLinkWithHref],
+  imports: [ProductComponent, CommonModule, RouterLinkWithHref, SpinnerComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
@@ -24,6 +25,7 @@ export class ListComponent implements OnInit {
 
   products = signal<Product[]>([]);
   categories = signal<Category[] | null>(null);
+  isShowSpinner = true;
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
@@ -47,15 +49,19 @@ export class ListComponent implements OnInit {
   private getCategories() {
     this.categoriesServicies.getCategories()
     .subscribe({
-      next: (data) => {
-        this.categories.set(data);
-      }
+      next: (data) => this.categories.set(data)
     })
   }
 
   private getProducts(categoryId? : string) {
     this.productService.getProducts(categoryId).subscribe({
-      next: (products) => this.products.set(products.slice(0, 8))
+      next: (products) => {
+        this.products.set(products.slice(0, 8));
+        products.length > 0 ? this.isShowSpinner = false : this.router.navigate(['/404'])
+      },
+      error: () => {
+        this.router.navigate(['/404']);
+      }
     });
   }
 }

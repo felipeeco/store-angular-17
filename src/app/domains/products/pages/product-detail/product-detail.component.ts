@@ -5,11 +5,12 @@ import { SafeUrlPipe } from '@shared/pipes/sanitizer-url-image.pipe';
 import { ProductService } from '@shared/services/product.service';
 import { Product } from '@shared/models/product.model';
 import { CartService } from '@shared/services/cart.service';
+import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, SafeUrlPipe],
+  imports: [CommonModule, SafeUrlPipe, SpinnerComponent],
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
@@ -17,10 +18,11 @@ export class ProductDetailComponent implements OnInit{
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
-  product = signal<Product | null>(null);
-  cover = signal('assets/images/default-product.jpeg');
   private productService = inject(ProductService);
   private cartService = inject(CartService);
+  product = signal<Product | null>(null);
+  cover = signal('assets/images/default-product.jpeg');
+  isShowSpinner = true;
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -48,6 +50,7 @@ export class ProductDetailComponent implements OnInit{
           if (product.images[0].slice(0,5) === 'https') {
             this.cover.set(product.images[0])
           }
+          this.isShowSpinner = false;
         },
         error: () => {
           this.router.navigate(['/404']);
